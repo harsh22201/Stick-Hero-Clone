@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+
+<Pane prefHeight="750" prefWidth="400" xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.game.Home_Screen">
+    <!-- Background image -->
+    <ImageView fitHeight="750" fitWidth="400" pickOnBounds="true" >
+        <image>
+            <Image url="@../backgrounds/LANDSCAPE.png" />
+        </image>
+    </ImageView>
+
+
+    
+    <!-- stick hero image -->
+    <ImageView  fitHeight="155" pickOnBounds="true" preserveRatio="true"
+            layoutX="46" layoutY="46"> 
+        <image>
+            <Image url="@../bitmaps/STICK HERO.png" />
+        </image>
+    </ImageView>
+    
+    <!-- Button placed at specific layout coordinates -->
+    <Button fx:id="play_button" 
+            onMouseEntered="#play_button_enter" onMouseExited="#play_button_exit"  onMouseClicked="#play_button_click"
+            style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 0;"
+            prefWidth="10" prefHeight="10" 
+            layoutX="130" layoutY="310"> 
+        <graphic>
+            <ImageView fx:id="play_button_imageview" fitWidth="145" fitHeight="145" pickOnBounds="true" preserveRatio="true">
+                <effect>
+                    <ColorAdjust fx:id="play_button_coloradjust" brightness="0.0" />
+                </effect>
+                <image>
+                    <Image url="@../buttons/PLAY.png" /> 
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
+
+    <ImageView fx:id="idle_hero_imageview" fitWidth="60" fitHeight="60" pickOnBounds="true" preserveRatio="true"
+            layoutX="177" layoutY="568"> 
+        <image>
+            <Image url="@../animations/Idle/idle1.png" />
+        </image>
+    </ImageView>
+
+</Pane>
