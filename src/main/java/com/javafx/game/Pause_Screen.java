@@ -34,15 +34,7 @@ public class Pause_Screen {
     @FXML
     private void home_button_click() {
         Sound.click();
-        Stage primaryStage = (Stage) home_button.getScene().getWindow();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Home_Screen.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 750);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Screen_Loader.home();
     }
 
     // resume button fxml
@@ -67,16 +59,7 @@ public class Pause_Screen {
     @FXML
     private void resume_button_click() {
         Sound.click();
-        // goto play screen
-        Stage primaryStage = (Stage) resume_button.getScene().getWindow();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Play_Screen.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 750);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Screen_Loader.play();
     }
 
     // restart button fxml
@@ -101,15 +84,7 @@ public class Pause_Screen {
     @FXML
     private void restart_button_click() {
         Sound.click();
-        Stage primaryStage = (Stage) restart_button.getScene().getWindow();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Play_Screen.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 750);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Screen_Loader.play();
     }
 
     // save button fxml

@@ -2,6 +2,8 @@ package com.javafx.game;
 
 import javafx.animation.ParallelTransition;
 import javafx.animation.ScaleTransition;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
@@ -27,4 +29,23 @@ public class Effects {
         // Play the parallel transition
         parallelTransition.play();
     }
+
+    public static void move_left(double distance, Runnable onFinished, Node... nodes) {
+        final double SPEED = 2; // 1x 2x 3x 4x 5x
+        ParallelTransition parallelTransition = new ParallelTransition();
+        for (Node node : nodes) {
+            TranslateTransition transition = new TranslateTransition(Duration.seconds(1 / SPEED), node);
+            transition.setToX(-distance); // Move the node to the left by the specified distance
+            parallelTransition.getChildren().add(transition);
+        }
+
+        parallelTransition.setOnFinished(event -> {
+            if (onFinished != null) {
+                onFinished.run(); // Execute the next instruction
+            }
+        });
+
+        parallelTransition.play();
+    }
+
 }

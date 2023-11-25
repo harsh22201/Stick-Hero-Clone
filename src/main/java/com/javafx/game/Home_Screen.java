@@ -7,8 +7,10 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Rectangle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
@@ -18,6 +20,8 @@ import java.io.IOException;
 
 public class Home_Screen {
 
+    @FXML
+    private Pane scene_pane;
     @FXML
     private Button play_button;
     @FXML
@@ -38,14 +42,65 @@ public class Home_Screen {
     @FXML
     private void play_button_click() {
         Sound.click();
-        Stage primaryStage = (Stage) play_button.getScene().getWindow();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Play_Screen.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 750);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        Screen_Loader.play();
+    }
+
+    @FXML
+    Button load_button;
+
+    @FXML
+    ImageView load_button_imageview;
+
+    @FXML
+    ColorAdjust load_button_coloradjust;
+
+    @FXML
+    private void load_button_enter() {
+        load_button_coloradjust.setBrightness(0.3);
+    }
+
+    @FXML
+    private void load_button_exit() {
+        load_button_coloradjust.setBrightness(0);
+    }
+
+    @FXML
+    private void load_button_click() {
+        Sound.click();
+        System.err.println("Load button clicked");
+    }
+
+    @FXML
+    Button volume_button;
+
+    @FXML
+    ImageView volume_button_imageview;
+
+    @FXML
+    ColorAdjust volume_button_coloradjust;
+
+    @FXML
+    private void volume_button_enter() {
+        volume_button_coloradjust.setBrightness(0.3);
+    }
+
+    @FXML
+    private void volume_button_exit() {
+        volume_button_coloradjust.setBrightness(0);
+    }
+
+    @FXML
+    private void volume_button_click() {
+        Sound.click();
+        System.err.println("Volume button clicked");
+        if (Sound.isMuted) {
+            Sound.unmute();
+            volume_button_imageview
+                    .setImage(new Image(getClass().getResource("buttons/VOLUME_ON.png").toExternalForm()));
+        } else {
+            Sound.mute();
+            volume_button_imageview
+                    .setImage(new Image(getClass().getResource("buttons/VOLUME_OFF.png").toExternalForm()));
         }
     }
 
@@ -61,14 +116,11 @@ public class Home_Screen {
     private ImageView idle_hero_imageview;
 
     private void idle_hero_animate() {
-
         String[] framespath = new String[14];
-
         for (int i = 0; i < 14; i++) {
             String framepath = "animations/Idle/idle" + (i + 1) + ".png";
             framespath[i] = framepath;
         }
-
         Timeline timeline = new Timeline();
         for (int i = 0; i < 14; i++) {
             final int index = i;

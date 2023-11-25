@@ -1,26 +1,22 @@
 package com.javafx.game;
 
-import javafx.animation.AnimationTimer;
-import javafx.animation.ParallelTransition;
-import javafx.animation.ScaleTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.util.Duration;
-
-import java.io.IOException;
-import java.io.File;
 
 public class Play_Screen {
+
+    Engine engine;
+
+    @FXML
+    Pane pane;
+
+    @FXML
+    private ImageView background_imageview;
 
     @FXML
     private Button pause_button;
@@ -43,27 +39,20 @@ public class Play_Screen {
     @FXML
     private void pause_button_click() {
         Sound.click();
-        Stage primaryStage = (Stage) pause_button.getScene().getWindow();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Pause_Screen.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 750);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Screen_Loader.pause();
     }
 
+    // make score counter
     @FXML
-    private Text score_counter;;
-    @FXML
-    private Button score_button;
-    private int score_count = 0;
+    Text score_counter;
 
-    @FXML
-    private void score_button_click() {
-        score_count++;
-        score_counter.setText(Integer.toString(score_count));
+    void init_score_count() {
+        score_counter.setText(Integer.toString(engine.score_count));
+    }
+
+    void gained_score() {
+        Sound.score();
+        score_counter.setText(Integer.toString(engine.score_count));
         Effects.Bounce(score_counter);
     }
 
@@ -71,29 +60,36 @@ public class Play_Screen {
     @FXML
     private ImageView cherry_image_view;
     @FXML
-    private Text cherry_counter;
-    @FXML
-    private Button cherry_button;
-    private int cherry_count = 0;
+    Text cherry_counter;
 
-    @FXML
-    private void cherry_button_click() {
-        cherry_count++;
-        cherry_counter.setText(Integer.toString(cherry_count));
+    void init_cherry_count() {
+        cherry_counter.setText(Integer.toString(engine.cherry_count));
+    }
+
+    void gained_cherry() {
+        cherry_counter.setText(Integer.toString(engine.cherry_count));
         Effects.Bounce(cherry_image_view);
     }
 
     @FXML
     void onMousePressed() {
-        Sound.stick_grow();
+        if (engine.can_stick_grow) {
+            engine.stick_grow();
+            Sound.stick_grow();
+        }
     }
 
     @FXML
     void onMouseReleased() {
-        Sound.stick_grow_stop();
+        engine.stop_stick_grow();
+        Sound.stop_stick_grow();
+        if (engine.can_stick_grow) {
+            engine.rotate_stick();
+        }
     }
 
     @FXML
     private void initialize() {
+        engine = new Engine(this); // composition - play screen contains engine
     }
 }

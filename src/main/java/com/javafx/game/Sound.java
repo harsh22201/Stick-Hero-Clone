@@ -5,19 +5,21 @@ import javafx.scene.media.MediaPlayer;
 
 public class Sound {
 
-    private static MediaPlayer rain;
+    static boolean isMuted = false;
+
+    private static MediaPlayer background;
     private static MediaPlayer stick_grow;
     private static MediaPlayer hero_fall;
     private static MediaPlayer whoosh;
     private static MediaPlayer score;
     private static MediaPlayer click;
 
-    public static void rain() {
-        String audiopath = Sound.class.getResource("sounds/RAIN.wav").toString();
+    public static void background() {
+        String audiopath = Sound.class.getResource("sounds/BACKGROUND.wav").toString();
         Media backgroundMusic = new Media(audiopath);
-        rain = new MediaPlayer(backgroundMusic);
-        rain.setCycleCount(MediaPlayer.INDEFINITE);
-        rain.play();
+        background = new MediaPlayer(backgroundMusic);
+        background.setCycleCount(MediaPlayer.INDEFINITE);
+        background.play();
     }
 
     public static void stick_grow() {
@@ -28,7 +30,7 @@ public class Sound {
         stick_grow.play();
     }
 
-    public static void stick_grow_stop() {
+    public static void stop_stick_grow() {
         stick_grow.stop();
     }
 
@@ -58,5 +60,32 @@ public class Sound {
         Media backgroundMusic = new Media(audiopath);
         click = new MediaPlayer(backgroundMusic);
         click.play();
+    }
+
+    public static void gameover() {
+        String audiopath = Sound.class.getResource("sounds/GAMEOVER.mp3").toString();
+        Media backgroundMusic = new Media(audiopath);
+        click = new MediaPlayer(backgroundMusic);
+        click.play();
+    }
+
+    public static void mute() {
+        // background.setMute(true);
+        // stick_grow.setMute(true);
+        // hero_fall.setMute(true);
+        // whoosh.setMute(true);
+        // score.setMute(true);
+        // click.setMute(true);
+        isMuted = true;
+    }
+
+    public static void unmute() {
+        // background.setMute(false);
+        // stick_grow.setMute(false);
+        // hero_fall.setMute(false);
+        // whoosh.setMute(false);
+        // score.setMute(false);
+        // click.setMute(false);
+        isMuted = false;
     }
 }
