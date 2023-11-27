@@ -73,19 +73,13 @@ public class Play_Screen {
 
     @FXML
     void onMousePressed() {
-        if (engine.can_stick_grow) {
-            engine.stick_grow();
-            Sound.stick_grow();
-        }
+        engine.stick_grow();
+        engine.hero.flip();
     }
 
     @FXML
     void onMouseReleased() {
-        engine.stop_stick_grow();
-        Sound.stop_stick_grow();
-        if (engine.can_stick_grow) {
-            engine.rotate_stick();
-        }
+        engine.try_stop_stick_grow();
     }
 
     @FXML

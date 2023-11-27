@@ -1,17 +1,17 @@
 package com.javafx.game;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-
-import java.io.IOException;
+import javafx.scene.text.Text;
 
 public class Pause_Screen {
 
+    @FXML
+    private Text score_count;
+    @FXML
+    private Text best_score_count;
     // home button fxml
     @FXML
     private Button home_button;

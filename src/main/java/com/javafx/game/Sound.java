@@ -41,7 +41,7 @@ public class Sound {
         hero_fall.play();
     }
 
-    public static void whoosh() {
+    public static void flip() {
         String audiopath = Sound.class.getResource("sounds/WHOOSH.mp3").toString();
         Media backgroundMusic = new Media(audiopath);
         whoosh = new MediaPlayer(backgroundMusic);
@@ -62,7 +62,7 @@ public class Sound {
         click.play();
     }
 
-    public static void gameover() {
+    public static void game_over() {
         String audiopath = Sound.class.getResource("sounds/GAMEOVER.mp3").toString();
         Media backgroundMusic = new Media(audiopath);
         click = new MediaPlayer(backgroundMusic);

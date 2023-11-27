@@ -1,16 +1,18 @@
 package com.javafx.game;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-
-import java.io.IOException;
+import javafx.scene.text.Text;
 
 public class Gameover_Screen {
+
+    @FXML
+    private Text score_count;
+
+    @FXML
+    private Text best_score_count;
 
     @FXML
     private Button home_button;
@@ -33,15 +35,7 @@ public class Gameover_Screen {
     @FXML
     private void home_button_click() {
         Sound.click();
-        Stage primaryStage = (Stage) home_button.getScene().getWindow();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Home_Screen.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 750);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Screen_Loader.home();
     }
 
     // restart button fxml
@@ -66,15 +60,7 @@ public class Gameover_Screen {
     @FXML
     private void restart_button_click() {
         Sound.click();
-        Stage primaryStage = (Stage) restart_button.getScene().getWindow();
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/Play_Screen.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 750);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Screen_Loader.play();
     }
 
     @FXML

@@ -10,20 +10,9 @@ public class Screen_Loader {
 
     static Stage primaryStage;
 
-    static void gameover() {
+    static void home() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Screen_Loader.class.getResource("fxml/Gameover_Screen.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 400, 750);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    static void pause() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Screen_Loader.class.getResource("fxml/Pause_Screen.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Screen_Loader.class.getResource("fxml/Home_Screen.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 400, 750);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -43,9 +32,20 @@ public class Screen_Loader {
         }
     }
 
-    static void home() {
+    static void pause() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Screen_Loader.class.getResource("fxml/Home_Screen.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(Screen_Loader.class.getResource("fxml/Pause_Screen.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 750);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void game_over() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Screen_Loader.class.getResource("fxml/Gameover_Screen.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 400, 750);
             primaryStage.setScene(scene);
             primaryStage.show();
