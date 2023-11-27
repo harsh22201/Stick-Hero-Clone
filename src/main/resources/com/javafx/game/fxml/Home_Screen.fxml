@@ -24,13 +24,14 @@
     </ImageView>
 
     <ImageView fx:id="idle_hero_imageview" fitHeight="60" fitWidth="60" layoutX="178.0" layoutY="569.0" pickOnBounds="true" preserveRatio="true"> 
-        <image>
+        <!-- <image>
             <Image url="@../animations/Idle/idle1.png" />
-        </image>
+        </image> -->
     </ImageView>
 
 
-    <Rectangle fill="BLACK" height="130.0" width="90.0" layoutX="155.0" layoutY="620.0"  />
+    <Rectangle fill="BLACK"  height="130.0" width="90.0" layoutX="155.0" layoutY="620.0"  />
+
     
     <!-- Button placed at specific layout coordinates -->
     <Button fx:id="play_button" alignment="CENTER" layoutX="127.5" layoutY="310" onMouseClicked="#play_button_click" onMouseEntered="#play_button_enter" onMouseExited="#play_button_exit" prefHeight="10" prefWidth="10.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 0;"> 

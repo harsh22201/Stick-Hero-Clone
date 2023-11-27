@@ -4,6 +4,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+
 
 <!-- make bacground   and home_button -->
 <Pane prefHeight="750" prefWidth="400" xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.game.Pause_Screen">
@@ -37,6 +39,9 @@
             <Image url="@../bitmaps/PAUSED!.png" />
         </image>
     </ImageView>
+
+    <Text fx:id="score_count" layoutX="125.0" layoutY="242.0" style="-fx-font-size: 40pt;" text="" textAlignment="CENTER" wrappingWidth="150.0" />
+    <Text fx:id="best_score_count" layoutX="125.0" layoutY="329.0" style="-fx-font-size: 40pt;" text="" textAlignment="CENTER" wrappingWidth="150.0" />
     
     <!-- Button placed at specific layout coordinates -->
     <Button fx:id="home_button" 
