@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane fx:id="scene_pane" prefHeight="750" prefWidth="400" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.game.Home_Screen">
+<Pane fx:id="scene_pane" prefHeight="750" prefWidth="400" xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.game.Home_Screen">
     <!-- Background image -->
     <ImageView fitHeight="750" fitWidth="400" pickOnBounds="true">
         <image>

@@ -9,7 +9,7 @@
 
 <!-- make bacground   and home_button -->
 
-<Pane prefHeight="750" prefWidth="400" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.game.Gameover_Screen">
+<Pane prefHeight="750" prefWidth="400" xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javafx.game.Gameover_Screen">
 
     <!-- Background image -->
     <ImageView fitHeight="750" fitWidth="400" pickOnBounds="true" preserveRatio="true">
@@ -37,6 +37,21 @@
     <Text fx:id="score_count" layoutX="125.0" layoutY="242.0" style="-fx-font-size: 40pt;" text="" textAlignment="CENTER" wrappingWidth="150.0" />
     <Text fx:id="best_score_count" layoutX="125.0" layoutY="329.0" style="-fx-font-size: 40pt;" text="" textAlignment="CENTER" wrappingWidth="150.0" />
     
+
+    <!-- Revive button  -->
+    <Button fx:id="revive_button" layoutX="102" layoutY="372" onMouseClicked="#revive_button_click" onMouseEntered="#revive_button_enter" onMouseExited="#revive_button_exit" prefHeight="10" prefWidth="10" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 0;"> 
+        <graphic>
+            <ImageView fx:id="revive_button_imageview"  fitWidth="200" pickOnBounds="true" preserveRatio="true">
+                <effect>
+                    <ColorAdjust fx:id="revive_button_coloradjust" brightness="0.0" />
+                </effect>
+                <image>
+                    <Image url="@../buttons/REVIVE.png" /> 
+                </image>
+            </ImageView>
+        </graphic>
+    </Button>
+
     <!-- Button placed at specific layout coordinates -->
     <Button fx:id="home_button" layoutX="111" layoutY="491.5" onMouseClicked="#home_button_click" onMouseEntered="#home_button_enter" onMouseExited="#home_button_exit" prefHeight="10" prefWidth="10" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 0;"> 
         <graphic>
