@@ -83,7 +83,7 @@ public class Effects {
     }
 
     private static List<Image> make_frames(String folderName) {
-        String folderPath = "animations/" + folderName + "/ (";
+        String folderPath = "animations/" + folderName + "/(";
         List<Image> frames = new ArrayList<>();
         int i = 1;
         while (true) {
