@@ -1,21 +1,48 @@
-# Stick Hero Game
+# Stick Hero
 
-This is my AP course project,we were tasked with implementing a game inspired by Stick Hero using JavaFX and object-oriented programming (OOP) concepts. Game emulate the core mechanics of Stick Hero while adding our own creative twist.
+# Introduction
 
-## Game Mechanics:
+This project implements a clone of mobile game "Stick hero", Game was created using javafx and fxml with maven and utilizes important OOPs concept such as :
 
-1. he game should include a reviving feature, which allows the player to be revived once using a certain amount of cherries which can be collected during the game - 2 , 4 , 8 .
+-   Encapsulation
+-   Inheritance
+-   Polymorphism
+-   Abstraction
+-   Interfaces
+-   JUnit Testing (Junit 5)
+-   Data Serialisation
+-   Design Patterns
+-   Exception Handling
 
-2. The character should collect rewards, such as cherries, as in the original game, by flipping the player upside down using user input while traversing platforms. These rewards should add to the player's score.
+## Game Mechanics
 
-3. success land + 1 score
+-   **Character Control:** Players control Stick-Hero, navigating between platforms and extending a stick to bridge the gaps between pillars.
+-   **Multiple Pillars:** The game features various pillars of different widths, creating diverse challenges for players.
+-   **Precision Timing:** Landing on platforms requires precise timing of the stick extension. Failing to land results in the character falling into the abyss and ending the game.
+-   **Reviving Feature:** Players have the chance to be revived once using cherries collected during gameplay. The cherries are utilized for revival but are deducted from the player's score upon revival.
+-   **Reward Collection:** Stick-Hero collects rewards like cherries by flipping upside down while traversing platforms. These rewards contribute to the player's score.
+-   **Scoring System:** The game features a scoring system that incentivizes players to aim for higher scores by collecting more rewards.
+-   **Progress Saving:** Players can save their progress at any point during gameplay, storing information like the last score, highest score achieved, and total cherries collected.
+-   **Enhancements:** Game includes graphics, sound effects, and animations to create an immersive gaming experience.
 
-4. perfect land (red part ) +1 score
+# Game Play
 
-5. best score , total cherries will be saved in file
+## Home Screen
 
-6. restart a level , save previous game
+![Home Screen](Home_Screen.png)
 
-## UML
+## Play Screen
+
+![Play Screen](Play_Screen.png)
+
+## Pause Screen
+
+![Pause Screen](Pause_Screen.png)
+
+## GameOver Screen
+
+![GameOver Screen](GameOver_Screen.png)
+
+## UML Diagram
 
 ![UML](UML.jpeg)
