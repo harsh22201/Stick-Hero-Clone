@@ -16,7 +16,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Screen_Loader.primaryStage = primaryStage;
-        primaryStage.setTitle("Stick Hero");
+        primaryStage.setTitle("Stick Hero. ");
         Screen_Loader.home();
         Sound.background();
     }

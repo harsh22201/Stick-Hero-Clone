@@ -31,7 +31,7 @@ public class Home_Screen {
     @FXML
     private void play_button_click() {
         Sound.click();
-        Screen_Loader.play();
+        Screen_Loader.play(null);
     }
 
     @FXML
@@ -56,6 +56,9 @@ public class Home_Screen {
     @FXML
     private void load_button_click() {
         Sound.click();
+        GameState game_state = new GameState(0, 0, 0, 0);
+        game_state = game_state.load();
+        Screen_Loader.play(game_state);
         System.err.println("Load button clicked");
     }
 
@@ -82,7 +85,7 @@ public class Home_Screen {
     private void volume_button_click() {
         Sound.click();
         System.err.println("Volume button clicked");
-        if (Sound.isMuted) {
+        if (Sound.isMuted()) {
             Sound.unmute();
             volume_button_imageview
                     .setImage(new Image(getClass().getResource("buttons/VOLUME_ON.png").toExternalForm()));
@@ -101,12 +104,16 @@ public class Home_Screen {
     private ImageView idle_hero_imageview;
 
     private void idle_hero_animate() {
-        Effects.animation(idle_hero_imageview, Effects.idle_frames_list).play();
+        Effects.animation(idle_hero_imageview, "Idle").play();
     }
 
     @FXML
     private void initialize() {
         play_button_animate();
         idle_hero_animate();
+        if (Sound.isMuted()) {
+            volume_button_imageview
+                    .setImage(new Image(getClass().getResource("buttons/VOLUME_OFF.png").toExternalForm()));
+        }
     }
 }

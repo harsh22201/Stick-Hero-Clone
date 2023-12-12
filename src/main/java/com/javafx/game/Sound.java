@@ -3,89 +3,128 @@ package com.javafx.game;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-public class Sound {
+public class Sound { // singleton pattern
 
-    static boolean isMuted = false;
+    private static Sound sound = null;
 
+    // get instance for sound
+    public static Sound getInstance() {
+        if (sound == null) {
+            sound = new Sound();
+        }
+        return sound;
+    }
+
+    private Sound() {
+    }
+
+    private static boolean isMuted = false;
+
+    public static boolean isMuted() {
+        return isMuted;
+    }
+
+    private static Media background_Media;
+    private static Media stick_grow_Media;
+    private static Media hero_fall_Media;
+    private static Media whoosh_Media;
+    private static Media score_Media;
+    private static Media perfect_score_Media;
+    private static Media game_over_Media;
+    private static Media click_Media;
     private static MediaPlayer background;
     private static MediaPlayer stick_grow;
     private static MediaPlayer hero_fall;
     private static MediaPlayer whoosh;
     private static MediaPlayer score;
+    private static MediaPlayer perfect_score;
+    private static MediaPlayer game_over;
     private static MediaPlayer click;
 
+    static {
+        background_Media = new Media(Sound.class.getResource("sounds/BACKGROUND.wav").toString());
+        stick_grow_Media = new Media(Sound.class.getResource("sounds/STICK_GROW.mp3").toString());
+        hero_fall_Media = new Media(Sound.class.getResource("sounds/HERO_FALL.mp3").toString());
+        whoosh_Media = new Media(Sound.class.getResource("sounds/WHOOSH.mp3").toString());
+        score_Media = new Media(Sound.class.getResource("sounds/SCORE.wav").toString());
+        perfect_score_Media = new Media(Sound.class.getResource("sounds/PERFECT_SCORE.mp3").toString());
+        game_over_Media = new Media(Sound.class.getResource("sounds/GAMEOVER.mp3").toString());
+        click_Media = new Media(Sound.class.getResource("sounds/CLICK.mp3").toString());
+    }
+
+    private static void play_media(MediaPlayer media, int count) {
+        if (isMuted) {
+            return;
+        }
+        media.setCycleCount(count);
+        media.play();
+    }
+
+    private static void stop_media(MediaPlayer media) {
+        if (isMuted) {
+            return;
+        }
+        media.stop();
+    }
+
     public static void background() {
-        String audiopath = Sound.class.getResource("sounds/BACKGROUND.wav").toString();
-        Media backgroundMusic = new Media(audiopath);
-        background = new MediaPlayer(backgroundMusic);
-        background.setCycleCount(MediaPlayer.INDEFINITE);
-        background.play();
+        background = new MediaPlayer(background_Media);
+        play_media(background, MediaPlayer.INDEFINITE);
     }
 
     public static void stick_grow() {
-        String audiopath = Sound.class.getResource("sounds/STICK_GROW.mp3").toString();
-        Media backgroundMusic = new Media(audiopath);
-        stick_grow = new MediaPlayer(backgroundMusic);
-        stick_grow.setCycleCount(MediaPlayer.INDEFINITE);
-        stick_grow.play();
+
+        stick_grow = new MediaPlayer(stick_grow_Media);
+        play_media(stick_grow, MediaPlayer.INDEFINITE);
     }
 
     public static void stop_stick_grow() {
-        stick_grow.stop();
+        stop_media(stick_grow);
     }
 
     public static void hero_fall() {
-        String audiopath = Sound.class.getResource("sounds/HERO_FALL.mp3").toString();
-        Media backgroundMusic = new Media(audiopath);
-        hero_fall = new MediaPlayer(backgroundMusic);
-        hero_fall.play();
+
+        hero_fall = new MediaPlayer(hero_fall_Media);
+        play_media(hero_fall, 1);
     }
 
     public static void flip() {
-        String audiopath = Sound.class.getResource("sounds/WHOOSH.mp3").toString();
-        Media backgroundMusic = new Media(audiopath);
-        whoosh = new MediaPlayer(backgroundMusic);
-        whoosh.play();
+
+        whoosh = new MediaPlayer(whoosh_Media);
+        play_media(whoosh, 1);
     }
 
     public static void score() {
-        String audiopath = Sound.class.getResource("sounds/SCORE.wav").toString();
-        Media backgroundMusic = new Media(audiopath);
-        score = new MediaPlayer(backgroundMusic);
-        score.play();
+
+        score = new MediaPlayer(score_Media);
+        play_media(score, 1);
     }
 
     public static void click() {
-        String audiopath = Sound.class.getResource("sounds/CLICK.mp3").toString();
-        Media backgroundMusic = new Media(audiopath);
-        click = new MediaPlayer(backgroundMusic);
-        click.play();
+
+        click = new MediaPlayer(click_Media);
+        play_media(click, 1);
     }
 
     public static void game_over() {
-        String audiopath = Sound.class.getResource("sounds/GAMEOVER.mp3").toString();
-        Media backgroundMusic = new Media(audiopath);
-        click = new MediaPlayer(backgroundMusic);
-        click.play();
+
+        game_over = new MediaPlayer(game_over_Media);
+        play_media(game_over, 1);
+    }
+
+    public static void perfect_score() {
+
+        perfect_score = new MediaPlayer(perfect_score_Media);
+        play_media(perfect_score, 1);
     }
 
     public static void mute() {
-        // background.setMute(true);
-        // stick_grow.setMute(true);
-        // hero_fall.setMute(true);
-        // whoosh.setMute(true);
-        // score.setMute(true);
-        // click.setMute(true);
         isMuted = true;
+        background.setMute(isMuted);
     }
 
     public static void unmute() {
-        // background.setMute(false);
-        // stick_grow.setMute(false);
-        // hero_fall.setMute(false);
-        // whoosh.setMute(false);
-        // score.setMute(false);
-        // click.setMute(false);
         isMuted = false;
+        background.setMute(isMuted);
     }
 }

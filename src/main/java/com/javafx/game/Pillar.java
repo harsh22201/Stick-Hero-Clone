@@ -2,8 +2,9 @@ package com.javafx.game;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import java.io.Serializable;
 
-public class Pillar {
+public class Pillar implements Serializable {
 
     static final double HEIGHT = 200;
     static final double RED_PLATFORM_WIDTH = 8;
@@ -14,7 +15,7 @@ public class Pillar {
     Rectangle pillar;
     Rectangle red_platform;
 
-    public Pillar(double positionX, double width) {
+    Pillar(double positionX, double width) {
 
         double positionY = Engine.STAND_CLIFF_Y;
         double red_platform_x = positionX + (width / 2) - (RED_PLATFORM_WIDTH / 2);
@@ -34,7 +35,7 @@ public class Pillar {
         red_platform.setFill(Color.RED);
     }
 
-    public static Pillar generate_random_reach_pillar() {
+    public static Pillar pillar_factory() { // factory pattern
         double width = Math.random() * (Pillar.MAX_WIDTH - Pillar.MIN_WIDTH) + Pillar.MIN_WIDTH;
         double MAX_X = Main.SCREEN_WIDTH - width;
         double MIN_X = Engine.STAND_CLIFF_X + 5;

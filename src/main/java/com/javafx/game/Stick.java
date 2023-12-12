@@ -33,13 +33,14 @@ public class Stick {
         this.rectangle.setFill(Color.BLACK);
     }
 
-    public void grow() {
+    public Animation grow() {
         if (growingTimeline == null) {
             growingTimeline = new Timeline(
                     new KeyFrame(Duration.millis(10 / Stick.GROW_RATE), e -> increaseHeight()));
             growingTimeline.setCycleCount(Animation.INDEFINITE);
             growingTimeline.play();
         }
+        return growingTimeline;
     }
 
     public boolean stop_grow() {
@@ -53,7 +54,7 @@ public class Stick {
 
     private void increaseHeight() {
         if (rectangle.getHeight() >= Stick.MAX_HEIGHT) {
-            stop_grow();
+            growingTimeline.stop();
             return;
         }
         double newY = rectangle.getY() - 0.5; // Move the stick upwards
@@ -62,13 +63,14 @@ public class Stick {
         rectangle.setHeight(newHeight);
     }
 
-    public void rotate(Runnable onFinished) {
+    public Animation rotate(Runnable onFinished) {
         Rotate rotate = new Rotate();
         rotate.setPivotX(rectangle.getX() + rectangle.getWidth() / 2); // Pivot X at center
         rotate.setPivotY(rectangle.getY() + rectangle.getHeight()); // Pivot Y at bottom
         rectangle.getTransforms().add(rotate); // Add rotation to stick
 
         // Create a Timeline to rotate the stick
+
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1 / Stick.ROTATE_RATE), new KeyValue(rotate.angleProperty(), 90)));
 
@@ -78,6 +80,7 @@ public class Stick {
             }
         });
         timeline.play(); // Play the animation
+        return timeline;
     }
 
 }

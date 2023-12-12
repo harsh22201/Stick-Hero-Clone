@@ -8,6 +8,7 @@ import javafx.scene.text.Text;
 
 public class Pause_Screen {
 
+    Play_Screen play_screen;
     @FXML
     private Text score_count;
     @FXML
@@ -59,7 +60,8 @@ public class Pause_Screen {
     @FXML
     private void resume_button_click() {
         Sound.click();
-        Screen_Loader.play();
+        Screen_Loader.set_screen(play_screen.pane.getScene());
+        play_screen.engine.resume();
     }
 
     // restart button fxml
@@ -84,7 +86,7 @@ public class Pause_Screen {
     @FXML
     private void restart_button_click() {
         Sound.click();
-        Screen_Loader.play();
+        Screen_Loader.play(null);
     }
 
     // save button fxml
@@ -110,11 +112,21 @@ public class Pause_Screen {
     @FXML
     private void save_button_click() {
         Sound.click();
+        Engine engine = play_screen.engine;
+        GameState game_state = new GameState(engine.score_count, engine.reach_pillar.pillar.getX(),
+                engine.reach_pillar.pillar.getWidth(), engine.cherry.imageview.getX());
+        game_state.save();
         System.out.println("Save button clicked");
     }
 
     @FXML
     private void initialize() {
+    }
+
+    public void custom_init(int cur_score_, Play_Screen play_screen) {
+        this.score_count.setText(Integer.toString(cur_score_));
+        this.best_score_count.setText(Integer.toString(Score.get_best_score()));
+        this.play_screen = play_screen;
     }
 
 }

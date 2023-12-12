@@ -41,10 +41,10 @@ public class Effects {
     }
 
     public static Animation move_left(double distance, Runnable onFinished, Node... nodes) {
-        final double SPEED = 2; // 1x 2x 3x 4x 5x
+        final double SPEED = 300; // 1x 2x 3x 4x 5x
         ParallelTransition parallelTransition = new ParallelTransition();
         for (Node node : nodes) {
-            TranslateTransition transition = new TranslateTransition(Duration.seconds(1 / SPEED), node);
+            TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), node);
             transition.setByX(-distance); // Move the node to the left by the specified distance
             parallelTransition.getChildren().add(transition);
         }
@@ -58,10 +58,10 @@ public class Effects {
     }
 
     public static Animation move_right(Runnable onFinished, double distance, Node... nodes) {
-        final double SPEED = 2; // 1x 2x 3x 4x 5x
+        final double SPEED = 150; // 1x 2x 3x 4x 5x
         ParallelTransition parallelTransition = new ParallelTransition();
         for (Node node : nodes) {
-            TranslateTransition transition = new TranslateTransition(Duration.seconds(1 / SPEED), node);
+            TranslateTransition transition = new TranslateTransition(Duration.seconds(distance / SPEED), node);
             transition.setByX(distance); // Move the node to the left by the specified distance
             parallelTransition.getChildren().add(transition);
         }
@@ -98,36 +98,29 @@ public class Effects {
         return frames;
     }
 
-    public static List<Image> idle_frames_list = null;
-    public static List<Image> running_frames_list = null;
+    public static Animation animation(ImageView imageView, String folderName) {
 
-    static {
-        idle_frames_list = make_frames("Idle");
-        running_frames_list = make_frames("Run");
-    }
-
-    public static Animation animation(ImageView imageView, List<Image> frames_list) {
+        List<Image> frames_list;
+        frames_list = make_frames(folderName);
         Timeline timeline = new Timeline();
         for (int i = 0; i < frames_list.size(); i++) {
             Image frame = frames_list.get(i);
             KeyFrame keyFrame = new KeyFrame(Duration.millis(100 * (i + 1)), e -> imageView.setImage(frame));
             timeline.getKeyFrames().add(keyFrame);
         }
-        // timeline.setCycleCount(Timeline.INDEFINITE); // Set the cycle count as needed
-        timeline.setCycleCount(1);
+        timeline.setCycleCount(Timeline.INDEFINITE); // Set the cycle count as needed
+        // timeline.setCycleCount(1);
         return timeline;
     }
 
-    public static Animation parallel_animation(Runnable onFinished, Animation... animations) {
+    public static Animation move_down(double distance, Node... nodes) {
+        final double SPEED = 400; // 1x 2x 3x 4x 5x
         ParallelTransition parallelTransition = new ParallelTransition();
-        for (Animation animation : animations) {
-            parallelTransition.getChildren().add(animation);
+        for (Node node : nodes) {
+            TranslateTransition transition = new TranslateTransition(Duration.seconds(distance / SPEED), node);
+            transition.setToY(distance); // Move the node to the left by the specified distance
+            parallelTransition.getChildren().add(transition);
         }
-        parallelTransition.setOnFinished(event -> {
-            if (onFinished != null) {
-                onFinished.run(); // Execute the next instruction
-            }
-        });
         return parallelTransition;
     }
 

@@ -39,7 +39,7 @@ public class Play_Screen {
     @FXML
     private void pause_button_click() {
         Sound.click();
-        Screen_Loader.pause();
+        engine.pause();
     }
 
     // make score counter
@@ -69,12 +69,14 @@ public class Play_Screen {
     void gained_cherry() {
         cherry_counter.setText(Integer.toString(engine.cherry_count));
         Effects.Bounce(cherry_image_view);
+        Effects.Bounce(cherry_counter);
+
     }
 
     @FXML
     void onMousePressed() {
         engine.stick_grow();
-        engine.hero.flip();
+        engine.hero_flip();
     }
 
     @FXML
@@ -84,6 +86,12 @@ public class Play_Screen {
 
     @FXML
     private void initialize() {
-        engine = new Engine(this); // composition - play screen contains engine
     }
+
+    public void custom_init(GameState game_state) {
+        this.engine = new Engine(this, game_state); // engine
+        init_score_count();
+        init_cherry_count();
+    }
+
 }
